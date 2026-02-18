@@ -1,0 +1,172 @@
+import numpy as np
+import pandas as pd
+import nltk
+from nltk.probability import FreqDist, ConditionalFreqDist
+
+# Sample data
+items = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple', 'grape','banana', 'kiwi']
+categories = ['fruit', 'fruit', 'fruit', 'fruit', 'fruit', 'fruit', 'fruit', 'fruit', 'fruit']
+
+# Frequency distribution
+freq_dist = FreqDist(items)
+
+# Display frequency distribution
+print("Frequency Distribution:")
+for item, frequency in freq_dist.items():
+    print(f"{item}: {frequency}")
+
+# Conditional frequency distribution
+conditional_data = list(zip(categories, items))
+cond_freq_dist = ConditionalFreqDist(conditional_data)
+
+# Display conditional frequency distribution
+print("\nConditional Frequency Distribution:")
+for category in cond_freq_dist.conditions():
+    print(f"{category}:")
+    for item, frequency in cond_freq_dist[category].items():
+        print(f"  {item}: {frequency}")
+
+# Visualization (requires matplotlib)
+import matplotlib.pyplot as plt
+
+# Plotting frequency distribution
+freq_dist.plot(title='Frequency Distribution of Items', cumulative=False)
+plt.show()
+
+# Plotting conditional frequency distribution for a specific category
+category_to_plot = 'fruit'
+if category_to_plot in cond_freq_dist.conditions():
+    cond_freq_dist[category_to_plot].plot(title=f'Conditional Frequency Distribution for {category_to_plot}', cumulative=False)
+    plt.show()
+else:
+    print(f"Category '{category_to_plot}' not found in conditional frequency distribution.")
+
+import nltk
+from nltk.corpus import brown
+
+# (Run this only first time)
+# nltk.download('brown')
+
+# Create Conditional Frequency Distribution
+cfd = nltk.ConditionalFreqDist(
+    (genre, word)
+    for genre in brown.categories()
+    for word in brown.words(categories=genre)
+)
+
+# Show conditions (genres)
+print(cfd.conditions())
+
+# Tabulate specific words in selected genres
+cfd.tabulate(
+    conditions=['government', 'humor', 'reviews'],
+    samples=['leadership', 'worship', 'hardship']
+)
+
+# Plot graph
+cfd.plot(
+    conditions=['government', 'humor', 'reviews'],
+    samples=['leadership', 'worship', 'hardship']
+)
+
+# Cumulative tabulation
+cfd.tabulate(
+    conditions=['government', 'humor', 'reviews'],
+    samples=['leadership', 'worship', 'hardship'],
+    cumulative=True
+)
+
+# Frequency distribution for 'news' genre
+news_fd = cfd['news']
+
+# Top 3 most common words in news
+print(news_fd.most_common(3))
+
+# Frequency of the word 'the'
+print(news_fd['the'])
+
+import nltk
+from nltk.corpus import names
+
+# (Run only first time)
+# nltk.download('names')
+
+# Create list of (gender, last_letter)
+nt = [
+    (fid.split('.')[0], name[-1])
+    for fid in names.fileids()
+    for name in names.words(fid)
+]
+
+# Create Conditional Frequency Distribution
+cfd2 = nltk.ConditionalFreqDist(nt)
+
+# Count of names ending with 'a'
+print("Female names ending with 'a':", cfd2['female']['a'])
+print("Male names ending with 'a':", cfd2['male']['a'])
+
+# Compare full frequency distributions (not directly with >)
+print("Total female names:", sum(cfd2['female'].values()))
+print("Total male names:", sum(cfd2['male'].values()))
+
+# Tabulate selected letters
+cfd2.tabulate(samples=['a', 'e'])
+
+# Plot graph
+cfd2.plot()
+
+def cal_average(num):
+    sum_num = 0
+    for t in num:
+        sum_num = sum_num + t
+    avg = sum_num / len(num)
+    return avg
+
+print("The average is", cal_average([18, 25, 3, 41, 5]))
+
+def cal_average(num):
+    sum_num = 0
+    for t in num:
+        sum_num = sum_num + t
+    avg = sum_num / len(num)
+    return avg
+
+print("The average is", cal_average([18, 25, 3, 41, 5]))
+
+from statistics import mean
+
+number_list = [45, 34, 10, 36, 12, 6, 80]
+
+avg = mean(number_list)
+
+print("The average is", round(avg, 2))
+
+from numpy import mean
+
+number_list = [45, 34, 10, 36, 12, 6, 80]
+
+avg = mean(number_list)
+
+print("The average is", round(avg, 2))
+
+import statistics
+sample = [2.74, 1.23, 2.63, 2.22, 3, 1.98]
+print("Variance of sample set is % s" , statistics.variance(sample))
+
+from statistics import variance from
+fractions import Fraction as fr
+sample1 = (1, 2, 5, 4, 8, 9, 12)
+sample2 = (-2, -4, -3, -1, -5, -6)
+sample3 = (-9, -1, -0, 2, 1, 3, 4, 19)
+sample4 = (fr(1, 2), fr(2, 3), fr(3, 4),fr(5, 6), fr(7, 8))
+sample5 = (1.23, 1.45, 2.1, 2.2, 1.9)
+print("Variance of Sample1 is ",variance(sample1))
+print("Variance of Sample2 is ",variance(sample2))
+print("Variance of Sample3 is ",variance(sample3))
+print("Variance of Sample4 is ", variance(sample4))
+print("Variance of Sample5 is ",variance(sample5))
+
+import statistics
+sample = (1, 1.3, 1.2, 1.9, 2.5, 2.2)
+m = statistics.mean (sample)
+print("Variance of Sample set is ",statistics.variance(sample, xbar = m))
