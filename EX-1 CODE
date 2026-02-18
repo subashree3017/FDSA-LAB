@@ -1,0 +1,37 @@
+importnumpy as np
+# Creating array object arr
+= np.array( [[ 1, 2, 3],
+[ 4, 2, 5]] )
+
+# Printing type of arr object
+print("Array is of type: ", type(arr)) #
+Printing array dimensions (axes)
+print("No. of dimensions: ", arr.ndim) #
+Printing shape of array print("Shape of
+array: ", arr.shape)
+# Printing size (total number of elements) of array
+print("Size of array: ", arr.size)
+# Printing type of elements in array
+print("Array stores elements of type: ", arr.dtype)
+
+Import numpy as np
+a = np.array([[1,2,3],[3,4,5],[4,5,6]])
+print(a)
+print("After slicing")
+print(a[1:])
+
+# array to begin with import
+numpy as np
+a = np.array([[1,2,3],[3,4,5],[4,5,6]])
+print('Our array is:' ) print(a)
+# this returns array of items in the second column
+print('The items in the second column are:' )
+print(a[...,1])
+print('\n' )
+# Now we will slice all items from the second row
+print ('The items in the second row are:' )
+print(a[1,...])
+print('\n' )
+# Now we will slice all items from column 1 onwards
+print('The items column 1 onwards are:' )
+print(a[...,1:])
