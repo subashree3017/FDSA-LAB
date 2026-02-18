@@ -1,0 +1,61 @@
+Import matplotlib.pyplot as plt #
+x axis values
+x = [1,2,3]
+# corresponding y axis values y
+= [2,4,1]
+# plotting the points
+plt.plot(x, y)
+# naming the x axis
+plt.xlabel('x - axis') #
+naming the y axis
+plt.ylabel('y - axis')
+# giving a title to my graph
+plt.title('My first graph!')
+# function to show the plot
+plt.show()
+
+importnumpyasnp
+importmatplotlib.pyplotasplt x
+=np.arange(0, 3*np.pi, 0.1) y
+=np.sin(x)
+plt.plot(x, y)
+plt.show()
+
+importnumpy as np
+importmatplotlib.pyplot as plt
+# Compute the x and y coordinates for points on sine and cosine curves x
+= np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x) y_cos
+= np.cos(x)
+# Plot the points using matplotlib
+plt.plot(x, y_sin)
+plt.plot(x, y_cos) 
+plt.xlabel('x
+axis label') 
+plt.ylabel('y axis
+label') 
+plt.title('Sine and
+Cosine') plt.legend(['Sine',
+'Cosine'])
+plt.show()
+
+Line plot :
+from matplotlib import pyplot as plt x
+= [5, 2, 9, 4, 7]
+y = [10, 5, 8, 4, 2]
+plt.plot(x,y) plt.show()
+Bar plot :
+from matplotlib import pyplot as plt x
+= [5, 2, 9, 4, 7]
+y = [10, 5, 8, 4, 2]
+plt.bar(x,y) plt.show()
+Histogram :
+from matplotlib import pyplot as plt y
+y= [10, 5, 8, 4, 2]
+plt.hist(y) plt.show()
+Scatter Plot :
+from matplotlib import pyplot as plt x
+= [5, 2, 9, 4, 7]
+y = [10, 5, 8, 4, 2]
+plt.scatter(x, y)
+plt.show()
