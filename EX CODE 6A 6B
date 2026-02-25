@@ -19,16 +19,33 @@ print('predicted response:', y_pred)
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
-# Input data
-x = np.array([5, 15, 25, 35, 45, 55]).reshape((-1, 1))
-y = np.array([5, 20, 14, 32, 22, 38])
+# Input data (two independent variables)
+x = [
+    [0, 1],
+    [5, 1],
+    [15, 2],
+    [25, 5],
+    [35, 11],
+    [45, 15],
+    [55, 34],
+    [60, 35]
+]
 
-# Create and fit the model
+y = [4, 5, 20, 14, 32, 22, 38, 43]
+
+# Convert to numpy arrays
+x, y = np.array(x), np.array(y)
+
+# Create and fit model
 model = LinearRegression().fit(x, y)
 
-# R-squared value
+# R-squared
 r_sq = model.score(x, y)
 print('coefficient of determination:', r_sq)
+
+# Intercept and coefficients
+print('intercept:', model.intercept_)
+print('slope:', model.coef_)
 
 # Predictions
 y_pred = model.predict(x)
