@@ -1,0 +1,64 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import re
+import sklearn
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.feature_selection import RFE
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import cross_val_score, KFold, GridSearchCV
+from sklearn.pipeline import make_pipeline
+
+import warnings
+warnings.filterwarnings('ignore')
+
+# Import Housing dataset
+housing = pd.read_csv("Housing.csv")
+
+print(housing.head())
+
+# Number of observations
+print("Total observations:", len(housing.index))
+
+# Filter only area and price
+df = housing.loc[:, ['area', 'price']]
+print(df.head())
+
+# Scaling variables
+df_columns = df.columns
+scaler = MinMaxScaler()
+
+df = scaler.fit_transform(df)
+
+# Convert back to DataFrame
+df = pd.DataFrame(df)
+df.columns = df_columns
+
+print(df.head())
+
+# Visualize relationship between area and price
+sns.regplot(x="area", y="price", data=df, fit_reg=False)
+plt.title("Area vs Price")
+plt.show()
+
+# Split dataset into training and testing
+df_train, df_test = train_test_split(
+    df,
+    train_size=0.7,
+    test_size=0.3,
+    random_state=10
+)
+
+print("Training data size:", len(df_train))
+print("Testing data size:", len(df_test))
+
+# Split into X and y
+X_train = df_train['area'].values.reshape(-1, 1)
+y_train = df_train['price']
+
+X_test = df_test['area'].values.reshape(-1, 1)
+y_test = df_test['price']
